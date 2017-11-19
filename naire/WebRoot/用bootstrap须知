@@ -1,0 +1,4 @@
+这里是需要用到bootstrap是要引入的路径，引入后可以进行任何网站的开发
+<link href="/naire/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="/naire/bootstrap/js/bootstrap.min.js"></script>
+<script src="/naire/admin/jquery-easyui-1.5.1/jquery.min.js"></script>

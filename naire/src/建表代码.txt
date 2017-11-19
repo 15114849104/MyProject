@@ -1,0 +1,65 @@
+DROP  DATABASE IF EXISTS naire;
+
+CREATE DATABASE naire;
+
+use naire;
+
+create table roles
+(
+  rid int primary key auto_increment,
+  rname varchar(20)
+
+);
+
+create table question
+(  
+  qid int primary key auto_increment,
+  content varchar(20),
+  role_id int,
+  foreign key(role_id) references roles(rid)
+);
+
+create table user
+( 
+  uid int primary key auto_increment,
+  account varchar(20),
+  password varchar(20),
+  realname varchar(20),
+  role_id int,
+  foreign key(role_id) references roles(rid)
+);
+
+create table paper
+(
+  pid int primary key auto_increment,
+  title varchar(20),
+  pubdate date,
+  status int,
+  user_id int,
+  foreign key(user_id) references user(uid)
+);
+create table score
+(
+  sid int primary key auto_increment,
+  user_id int,
+  question_id int,
+  paper_id int,
+  score int,
+  foreign key(user_id) references user(uid),
+  foreign key(question_id) references question(qid),
+  foreign key(paper_id) references paper(pid),
+  unique(user_id,question_id,paper_id)
+);
+
+create table paper_question
+(
+  paper_id int,
+  question_id int,
+  foreign key(paper_id) references paper(pid),
+  foreign key(question_id) references question(qid),
+  unique(paper_id,question_id)
+  
+);
+
+lazy="false" 关闭延迟加载
+fetch="select"  放弃关系不管
